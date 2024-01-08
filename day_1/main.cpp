@@ -2,15 +2,25 @@
 #include <fstream>
 #include <regex>
 
-int main() {
-	std::string units[] = {"zero", "one", "two", "three", "four", 
-         				   "five", "six", "seven", "eight", "nine"};
+enum units {
+    zero = 0,
+    one = 1,
+    two = 2,
+    three = 3,
+    four = 4,
+    five = 5,
+    six = 6,
+    seven = 7,
+    eight = 8,
+    nine = 9
+}
 
+int main() {
     std::ifstream fin;
 
     std::string line;
 
-    fin.open("Inputs/1_input.txt");
+    fin.open("input.txt");
 
     int result = 0;
     int position = 1;
@@ -19,8 +29,6 @@ int main() {
     	int number = 0
     	int start_number = 0
     	int end_number = 0
-
-    	number = str
     }
 
 	return 0;
