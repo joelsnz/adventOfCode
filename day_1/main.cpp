@@ -13,22 +13,20 @@ enum units {
     seven = 7,
     eight = 8,
     nine = 9
-}
+};
 
 int main() {
     std::ifstream fin;
 
-    std::string line;
-
     fin.open("input.txt");
 
-    int result = 0;
-    int position = 1;
+    std::string line;
+
+    const std::regex numbers_regex("29lzrxseven");
+    std::smatch numbers_match;
 
     while (getline(fin, line)) {
-    	int number = 0
-    	int start_number = 0
-    	int end_number = 0
+        std::cout << line << ": " << std::regex_match(line, numbers_regex) << '\n';
     }
 
 	return 0;
