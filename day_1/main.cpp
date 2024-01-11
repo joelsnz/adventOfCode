@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <regex>
 
 int main() {
     std::ifstream fin;
@@ -9,13 +8,39 @@ int main() {
 
     std::string line;
 
-    const std::regex numbers_regex("[0-9]");
-    std::smatch first_number_match;
+    int *pNumbers = NULL;
+    int size;
+    int line_number = 0;
 
     while (getline(fin, line)) {
-        if(std::regex_search(line, first_number_match, numbers_regex)) {
-            std::cout << line << ": " << first_number_match.str() << '\n';
+        int number;
+        for (int i = 0; i < line.length(); i++) {
+            number = (int)(line[i] - '0');
+            if (number <= 9) {
+                size++;
+            }
         }
+
+        std::cout << "Size: " << size << '\n';
+        
+        pNumbers = new int[size];
+        int index = 0;
+        
+        for (int i = 0; i < line.length(); i++) {
+            number = (int)(line[i] - '0');
+            if (number <= 9) {
+                pNumbers[index] = number;
+                index++;
+            }
+        }
+/*
+        for (int i = 0; i < size; i++) {
+            std::cout << pNumbers[i];
+        }
+*/
+        delete[] pNumbers;
+        size = 0;
+        std::cout << '\n';
     }
 
 	return 0;
