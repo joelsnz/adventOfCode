@@ -41,7 +41,7 @@ int main() {
     }
     // display the result
     std::cout << "Result: " << result << '\n';
-	return 0;
+    return 0;
 }
 
 int getNumbersQuantity(std::string input) {
