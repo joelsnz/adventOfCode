@@ -18,7 +18,6 @@ int main() {
     int number;
 
     while (getline(fin, line)) {
-
         size = getNumbersQuantity(line);
 
         // assing size to the array
