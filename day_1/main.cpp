@@ -3,48 +3,27 @@
 
 int getNumbersQuantity(std::string input);
 void fillArray(std::string input, int *array);
+int getPart1(std::istream &input);
+int getPart2(std::istream &input);
 
 int main() {
     std::ifstream fin;
 
     fin.open("input.txt");
 
-    std::string line;
+    int result_part_1 = getPart1(fin);
+    int result_part_2 = 0;
 
-    int *pNumbers = NULL;
-    int size;
-    int line_number = 0;
-    int result = 0;
-    int number;
+    fin.close();
 
-    while (getline(fin, line)) {
-        size = getNumbersQuantity(line);
-
-        // assing size to the array
-        pNumbers = new int[size];
-
-        fillArray(line, pNumbers);
-
-        // create the number with the first and last element of the line
-        if (size != 1) {
-          line_number = (pNumbers[0] * 10) + pNumbers[size - 1];
-        } else {
-          line_number = (pNumbers[0] * 10) + pNumbers[0];
-        }
-
-        // add line number to the total
-        result += line_number;
-
-        // delete the pointer
-        delete[] pNumbers;
-    }
-    // display the result
-    std::cout << "Result: " << result << '\n';
+    // display the results
+    std::cout << "-------------\n" << "Part 1: " << result_part_1 << '\n';
+    std::cout << "Part 2: " << result_part_2 << "\n-------------\n";
     return 0;
 }
 
 int getNumbersQuantity(std::string input) {
-    /* determine the size of the array of numbers */
+    /* get the quantity of numbers in the passed string */
     int quantity = 0;
     for (int i = 0; i < input.length(); i++) {
         if ((int)(input[i] - '0') <= 9) {
@@ -65,4 +44,41 @@ void fillArray(std::string input, int *array) {
         }
     }
     return;
+}
+
+int getPart1(std::istream &input) {
+    std::string line;
+
+    int *pNumbers = NULL;
+    int size;
+    int line_number = 0;
+    int result = 0;
+    int number;
+
+    while (getline(input, line)) {
+        size = getNumbersQuantity(line);
+
+        // assign size to the array
+        pNumbers = new int[size];
+
+        fillArray(line, pNumbers);
+
+        // append the first and last element of pNumbers
+        line_number = (pNumbers[0] * 10) + pNumbers[size - 1];
+
+        // add line number to the total
+        result += line_number;
+
+        // delete the pointer
+        delete[] pNumbers;
+    }
+
+    return result;
+}
+
+
+int getPart2(std::istream &input) {
+    int result = 0;
+
+    return result;
 }
