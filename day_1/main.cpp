@@ -78,7 +78,10 @@ int getPart1(std::istream &input) {
 
 
 int getPart2(std::istream &input) {
+    std::string line;
+
     int result = 0;
+    int line_number = 0;
 
     return result;
 }
