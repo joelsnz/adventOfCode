@@ -6,24 +6,28 @@ int main(int argc, char *argv[]) {
     printf("day1 <file>\n");
     return 1;
   }
-  
+
+  // open file
   FILE *fp = fopen(argv[1], "r");
   if (fp == NULL) {
     printf("Error al abrir el archivo\n");
     return 1;
   }
 
+  // get number of lines
   fseek(fp, 0, SEEK_END);
   int fpSize = ftell(fp);
   rewind(fp);
 
+  // arrays for left and right lists
   int *leftList = malloc(fpSize * sizeof(int));
   int *rightList = malloc(fpSize * sizeof(int));
 
+  // fill arrays
   for(int i = 0; fscanf(fp, "%d %d", &leftList[i], &rightList[i]) == 2; i++);
+  fclose(fp);
 
   free(leftList);
   free(rightList);
-  fclose(fp);
   return 0;
 }
