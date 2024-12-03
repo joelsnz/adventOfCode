@@ -20,11 +20,7 @@ int main(int argc, char *argv[]) {
   int *leftList = malloc(fpSize * sizeof(int));
   int *rightList = malloc(fpSize * sizeof(int));
 
-  int i = 0;
-  while(fscanf(fp, "%d %d", &leftList[i], &rightList[i]) == 2) {
-    printf("%d - %d\n", leftList[i], rightList[i]);
-    i++;
-  }
+  for(int i = 0; fscanf(fp, "%d %d", &leftList[i], &rightList[i]) == 2; i++);
 
   free(leftList);
   free(rightList);
