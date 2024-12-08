@@ -35,12 +35,17 @@ int main(int argc, char *argv[]) {
   qsort(leftList, fpSize, sizeof(int), compare);
   qsort(rightList, fpSize, sizeof(int), compare);
   
-  int result = 0;
+  int p1 = 0, p2 = 0, similarity;
   for(int i = 0; i < fpSize; i++) {
-    result += abs(leftList[i] - rightList[i]);
+    p1 += abs(leftList[i] - rightList[i]);
+    similarity = 0;
+    for(int j = 0; j < fpSize; j++)
+      similarity += leftList[i] == rightList[j];
+    p2 += leftList[i] * similarity;
   }
   
-  printf("Result: %d\n", result);
+  printf("Part 1: %d\n", p1);
+  printf("Part 2: %d\n", p2);
 
   free(leftList);
   free(rightList);
