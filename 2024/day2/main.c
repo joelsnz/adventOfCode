@@ -13,18 +13,31 @@ int main(int argc, char *argv[]) {
     return 1;
   }
   
-  char buffer[24];
+  char buffer[25];
+  int result = 0;
   while(fgets(buffer, sizeof(buffer), fp)) {
-    int num;
+    int report[8], maxLvl = 0;
     char *ptr = buffer;
-    while(sscanf(ptr, "%d", &num) == 1) {
-      printf("%d ", num);
-      while(*ptr != '\0' && *ptr != ' ') ptr++;
+    while(sscanf(ptr, "%d", &report[maxLvl]) == 1) {
+      maxLvl++;
+      while(*ptr && *ptr != ' ') ptr++;
       while(*ptr == ' ') ptr++;
     }
-    printf("\n");
+    int ascendent = (report[0] < report[1]);
+    int isSafe = 1;
+    for (int i = 0; i < maxLvl - 1; i++) {
+      int diff = report[i + 1] - report[i];
+      if(ascendent) {
+        isSafe = diff >= 1 && diff <= 3;
+      } else {
+        isSafe = diff <= -1 && diff >= -3;
+      }
+        
+      if(!isSafe) break;
+    }
+    result += isSafe;
   }
-
+  printf("result = %d\n", result);
   fclose(fp);
   return 0;
 }
